@@ -1,6 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import api from '../api';
 
+function generateSessionId() {
+  return 'session_' + Math.random().toString(36).substr(2, 9);
+}
+
 function VaultAI() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
@@ -20,10 +24,6 @@ function VaultAI() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
-
-  const generateSessionId = () => {
-    return 'session_' + Math.random().toString(36).substr(2, 9);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
